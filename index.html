@@ -5,210 +5,241 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daniel Alves — Backend Dev</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0d0f12;
-      --surface: #141720;
-      --surface2: #1c2030;
-      --border: #252a3a;
-      --accent: #4ade80;
-      --accent-dim: rgba(74, 222, 128, 0.12);
-      --text: #e2e8f0;
-      --muted: #64748b;
-      --mono: 'JetBrains Mono', monospace;
-      --sans: 'Sora', sans-serif;
+      --bg: #111214;
+      --surface: #191b1e;
+      --surface2: #1f2124;
+      --border: #28292d;
+      --border-hover: #3a3c41;
+      --accent: #8a9aaa;
+      --accent-dim: rgba(138, 154, 170, 0.07);
+      --accent2: #a8b8c6;
+      --text: #b0b8c2;
+      --text-strong: #d4dae0;
+      --muted: #606870;
+      --muted2: #42484f;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'IBM Plex Sans', sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
       color: var(--text);
       font-family: var(--sans);
       font-size: 17px;
-      line-height: 1.8;
+      line-height: 1.7;
       min-height: 100vh;
     }
 
     a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a:hover { color: var(--accent2); text-decoration: underline; text-underline-offset: 3px; }
 
     /* ── Layout ── */
     .container {
-      max-width: 960px;
+      max-width: 1060px;
       margin: 0 auto;
-      padding: 0 32px;
+      padding: 0 40px;
     }
 
     /* ── Header ── */
     header {
       border-bottom: 1px solid var(--border);
-      padding: 64px 0 52px;
-      animation: fadeDown .5s ease both;
+      padding: 48px 0 40px;
     }
 
     .header-inner {
       display: flex;
-      align-items: center;
-      gap: 36px;
+      align-items: flex-start;
+      gap: 32px;
     }
 
     .avatar {
-      width: 112px;
-      height: 112px;
-      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      border-radius: 6px;
       object-fit: cover;
-      border: 2px solid var(--border);
+      border: 1px solid var(--border);
       flex-shrink: 0;
-      filter: grayscale(20%);
+      filter: grayscale(15%);
     }
 
     .avatar-placeholder {
-      width: 112px;
-      height: 112px;
-      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      border-radius: 6px;
       background: var(--surface2);
-      border: 2px solid var(--border);
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--mono);
-      font-size: 28px;
+      font-size: 22px;
       color: var(--accent);
       flex-shrink: 0;
+      letter-spacing: 1px;
     }
 
     .header-text h1 {
       font-family: var(--mono);
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: #fff;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-strong);
+      letter-spacing: -0.3px;
     }
 
-    .header-text .role {
+    .role {
       font-family: var(--mono);
-      font-size: 15px;
+      font-size: 13px;
       color: var(--accent);
-      margin-top: 4px;
+      margin-top: 6px;
+      letter-spacing: 0.5px;
     }
 
-    .header-text .bio {
-      margin-top: 10px;
-      font-size: 16px;
+    .bio {
+      margin-top: 12px;
+      font-size: 15px;
       color: var(--muted);
-      max-width: 520px;
+      max-width: 500px;
+      line-height: 1.7;
     }
 
     .links {
       display: flex;
-      gap: 20px;
-      margin-top: 18px;
+      gap: 18px;
+      margin-top: 20px;
       flex-wrap: wrap;
     }
 
     .links a {
       font-family: var(--mono);
-      font-size: 14px;
+      font-size: 13px;
       color: var(--muted);
       display: flex;
       align-items: center;
-      gap: 7px;
-      transition: color .2s;
+      gap: 6px;
+      transition: color .15s;
     }
 
     .links a:hover { color: var(--accent); text-decoration: none; }
-
-    .links a svg { width: 16px; height: 16px; }
+    .links a svg { width: 15px; height: 15px; flex-shrink: 0; }
 
     /* ── Sections ── */
     section {
-      padding: 52px 0;
+      padding: 36px 0;
       border-bottom: 1px solid var(--border);
-      animation: fadeUp .5s ease both;
     }
 
-    section:last-child { border-bottom: none; }
+    section:last-of-type { border-bottom: none; }
 
     .section-label {
       font-family: var(--mono);
-      font-size: 13px;
-      color: var(--accent);
-      letter-spacing: 2px;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 3px;
       text-transform: uppercase;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
     }
 
     /* ── Skills ── */
     .skills-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
     .skill-tag {
-      background: var(--accent-dim);
-      border: 1px solid rgba(74, 222, 128, 0.25);
-      color: var(--accent);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
       font-family: var(--mono);
       font-size: 14px;
-      padding: 6px 16px;
-      border-radius: 4px;
+      padding: 5px 14px;
+      border-radius: 3px;
+      transition: border-color .15s, color .15s;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--border-hover);
+      color: var(--accent);
     }
 
     /* ── Projects ── */
     .projects-list {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
     }
 
     .project-card {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 28px 32px;
-      transition: border-color .2s, background .2s;
+      padding: 20px 26px;
+      transition: background .15s;
+      border-bottom: 1px solid var(--border);
       position: relative;
     }
 
-    .project-card:hover {
-      border-color: rgba(74, 222, 128, 0.35);
-      background: var(--surface2);
+    .project-card:last-child { border-bottom: none; }
+
+    .project-card:hover { background: var(--surface2); }
+
+    .project-card.featured::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--accent);
     }
 
     .project-header {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 12px;
+      gap: 12px;
+      margin-bottom: 8px;
     }
 
     .project-name {
       font-family: var(--mono);
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 600;
-      color: #fff;
+      color: var(--text-strong);
     }
 
     .project-badge {
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 11px;
       color: var(--muted);
       border: 1px solid var(--border);
-      padding: 3px 10px;
+      padding: 2px 8px;
       border-radius: 3px;
       white-space: nowrap;
       flex-shrink: 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
+    .project-badge.team { }
+    .project-badge.wip { }
+    .project-badge.data { }
+
     .project-desc {
-      font-size: 15.5px;
+      font-size: 15px;
       color: var(--muted);
-      margin-bottom: 18px;
-      line-height: 1.7;
+      margin-bottom: 14px;
+      line-height: 1.6;
     }
 
     .project-footer {
@@ -216,108 +247,148 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
     .tech-list {
       display: flex;
-      gap: 10px;
+      gap: 0;
       flex-wrap: wrap;
     }
 
     .tech-item {
       font-family: var(--mono);
       font-size: 13px;
-      color: var(--muted);
+      color: var(--muted2);
     }
 
-    .tech-item::before { content: '# '; color: var(--border); }
+    .tech-item + .tech-item::before { content: ' · '; color: var(--border); }
 
     .project-link {
       font-family: var(--mono);
-      font-size: 13px;
-      color: var(--accent);
-      display: flex;
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 5px 12px;
+      display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 7px;
+      flex-shrink: 0;
+      transition: border-color .15s, color .15s;
+      text-decoration: none;
     }
 
-    .project-link:hover { text-decoration: underline; }
+    .project-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .project-link:hover {
+      color: var(--text-strong);
+      border-color: var(--border-hover);
+      text-decoration: none;
+    }
+
+    /* ── SIM group ── */
+    .sim-group {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 1px;
+    }
+
+    .sim-group-header {
+      background: var(--surface2);
+      padding: 10px 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sim-group-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .sim-group-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      padding: 2px 8px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .sim-sub {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sim-sub:last-child { border-bottom: none; }
 
     /* ── Education ── */
     .edu-list {
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 20px;
     }
 
     .edu-item {
-      display: flex;
-      gap: 24px;
-    }
-
-    .edu-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
-      margin-top: 8px;
-      flex-shrink: 0;
-    }
-
-    .edu-content {}
-
-    .edu-title {
-      font-weight: 600;
-      font-size: 16px;
-      color: var(--text);
-    }
-
-    .edu-inst {
-      font-family: var(--mono);
-      font-size: 14px;
-      color: var(--muted);
-      margin-top: 3px;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      align-items: start;
     }
 
     .edu-period {
       font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted2);
+      padding-top: 2px;
+      text-align: right;
+    }
+
+    .edu-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .edu-inst {
+      font-family: var(--mono);
       font-size: 13px;
-      color: #3d4a60;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .edu-sub {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted2);
       margin-top: 3px;
     }
 
     /* ── Footer ── */
     footer {
-      padding: 40px 0;
+      padding: 36px 0;
       text-align: center;
       font-family: var(--mono);
-      font-size: 13px;
-      color: #2a3347;
+      font-size: 12px;
+      color: var(--muted2);
     }
-
-    /* ── Animations ── */
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    section:nth-child(1) { animation-delay: .1s; }
-    section:nth-child(2) { animation-delay: .2s; }
-    section:nth-child(3) { animation-delay: .3s; }
-    section:nth-child(4) { animation-delay: .4s; }
 
     /* ── Mobile ── */
-    @media (max-width: 600px) {
-      .header-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
-      .avatar, .avatar-placeholder { width: 80px; height: 80px; font-size: 22px; }
-      .header-text h1 { font-size: 22px; }
-      .project-card { padding: 20px 20px; }
+    @media (max-width: 620px) {
+      .header-inner { flex-direction: column; gap: 16px; }
+      .avatar, .avatar-placeholder { width: 72px; height: 72px; font-size: 18px; }
+      .header-text h1 { font-size: 20px; }
+      .project-card { padding: 20px; }
+      .sim-group-header { padding: 10px 20px; }
+      .edu-item { grid-template-columns: 1fr; gap: 4px; }
+      .edu-period { text-align: left; }
     }
   </style>
 </head>
@@ -363,16 +434,17 @@
       <div class="section-label">habilidades</div>
       <div class="skills-grid">
         <span class="skill-tag">Java</span>
+        <span class="skill-tag">Spring Boot</span>
         <span class="skill-tag">Python</span>
         <span class="skill-tag">JavaScript</span>
-        <span class="skill-tag">Node.js / Express</span>
-        <span class="skill-tag">React</span>
-        <span class="skill-tag">SQLite3</span>
+        <span class="skill-tag">React / React Native</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">RabbitMQ</span>
+        <span class="skill-tag">JWT</span>
         <span class="skill-tag">REST API</span>
         <span class="skill-tag">HTML / CSS</span>
         <span class="skill-tag">Git</span>
         <span class="skill-tag">Scrum / Agile</span>
-        <span class="skill-tag">Machine Learning</span>
         <span class="skill-tag">IoT</span>
       </div>
     </section>
@@ -382,6 +454,112 @@
       <div class="section-label">projetos</div>
       <div class="projects-list">
 
+        <!-- SIM GROUP -->
+        <div class="sim-group">
+          <div class="sim-group-header">
+            <span class="sim-group-label">Sistema Integrado Móvel</span>
+            <span class="sim-group-tag">SIM · equipe</span>
+          </div>
+
+          <!-- SIM UI -->
+          <div class="project-card sim-sub featured">
+            <div class="project-header">
+              <span class="project-name">SIM — Interface Mobile</span>
+              <span class="project-badge team">equipe</span>
+            </div>
+            <p class="project-desc">Gerenciador de documentos desenvolvido em equipe durante o curso técnico. Este repositório contém apenas a camada de UI do sistema.</p>
+            <div class="project-footer">
+              <div class="tech-list">
+                <span class="tech-item">React Native</span>
+              </div>
+              <a class="project-link" href="https://github.com/gabrielfilipy/mpu-sp-ui" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg> GitHub</a>
+            </div>
+          </div>
+
+          <!-- UserAPI -->
+          <div class="project-card sim-sub">
+            <div class="project-header">
+              <span class="project-name">UserAPI — Gerenciamento de Usuários</span>
+              <span class="project-badge team">equipe</span>
+            </div>
+            <p class="project-desc">API de gerenciamento de usuários do SIM. A lógica de criação de usuários segue exatamente o padrão de cartórios e da prefeitura.</p>
+            <div class="project-footer">
+              <div class="tech-list">
+                <span class="tech-item">Java Spring Boot</span>
+                <span class="tech-item">PostgreSQL</span>
+                <span class="tech-item">RabbitMQ</span>
+                <span class="tech-item">JWT</span>
+              </div>
+              <a class="project-link" href="https://github.com/gabrielfilipy/user-api" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg> GitHub</a>
+            </div>
+          </div>
+
+          <!-- DocumentAPI -->
+          <div class="project-card sim-sub">
+            <div class="project-header">
+              <span class="project-name">DocumentAPI — Criação de Documentos</span>
+              <span class="project-badge wip">em dev</span>
+            </div>
+            <p class="project-desc">API de criação de documentos para o SIM. O fluxo exige um padrão estruturado de etapas para que um documento seja criado corretamente.</p>
+            <div class="project-footer">
+              <div class="tech-list">
+                <span class="tech-item">Java Spring Boot</span>
+                <span class="tech-item">PostgreSQL</span>
+                <span class="tech-item">RabbitMQ</span>
+              </div>
+              <a class="project-link" href="https://github.com/gabrielfilipy/document-api" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg> GitHub</a>
+            </div>
+          </div>
+
+          <!-- GovernmentAPI -->
+          <div class="project-card sim-sub">
+            <div class="project-header">
+              <span class="project-name">GovernmentAgencyAPI — Governança</span>
+              <span class="project-badge team">equipe</span>
+            </div>
+            <p class="project-desc">API para cadastro das localidades de cada departamento e pessoa dentro do SIM.</p>
+            <div class="project-footer">
+              <div class="tech-list">
+                <span class="tech-item">Java Spring Boot</span>
+                <span class="tech-item">PostgreSQL</span>
+                <span class="tech-item">RabbitMQ</span>
+              </div>
+              <a class="project-link" href="https://github.com/gabrielfilipy/government-agency-api" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg> GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PYTHON IFAM -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">PYTHON-IFAM-HORA-GRAU</span>
+            <span class="project-badge data">ciência de dados</span>
+          </div>
+          <p class="project-desc">Projeto realizado em um curso de ciência de dados no IFAM. O objetivo era simplificar o monitoramento de reprodução dos peixes e agilizar o serviço dos piscicultores.</p>
+          <div class="project-footer">
+            <div class="tech-list">
+              <span class="tech-item">Python</span>
+            </div>
+            <a class="project-link" href="https://github.com/danielalvespinheiro/python-IFAM-hora-grau" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg> GitHub</a>
+          </div>
+        </div>
+
+        <!-- CITHA -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Citha — Modelos de Pragas</span>
+            <span class="project-badge data">ciência de dados</span>
+          </div>
+          <p class="project-desc">Projeto de ciência de dados que retorna gráficos com as métricas de pragas que podem afetar uma plantação.</p>
+          <div class="project-footer">
+            <div class="tech-list">
+              <span class="tech-item">Python</span>
+            </div>
+            <a class="project-link" href="https://github.com/danielalvespinheiro/Projeto-citha-modelo-de-pragas" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg> GitHub</a>
+          </div>
+        </div>
+
+        <!-- API Cadastro -->
         <div class="project-card">
           <div class="project-header">
             <span class="project-name">API de Cadastro de Clientes</span>
@@ -393,12 +571,11 @@
               <span class="tech-item">Java</span>
               <span class="tech-item">React</span>
             </div>
-            <a class="project-link" href="https://github.com/danielalvespinheiro/Cadastro-de-cliente.git" target="_blank">
-              ver no GitHub →
-            </a>
+            <a class="project-link" href="https://github.com/danielalvespinheiro/Cadastro-de-cliente.git" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg> GitHub</a>
           </div>
         </div>
 
+        <!-- Cardápio -->
         <div class="project-card">
           <div class="project-header">
             <span class="project-name">Cardápio Digital</span>
@@ -411,12 +588,28 @@
               <span class="tech-item">CSS</span>
               <span class="tech-item">JavaScript</span>
             </div>
-            <a class="project-link" href="https://github.com/danielalvespinheiro/Cardapio-digital" target="_blank">
-              ver no GitHub →
-            </a>
+            <a class="project-link" href="https://github.com/danielalvespinheiro/Cardapio-digital" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg> GitHub</a>
           </div>
         </div>
 
+        <!-- Lincker -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Lincker</span>
+            <span class="project-badge">freelance</span>
+          </div>
+          <p class="project-desc">Site com linkes com linkes em geral solicitado pelo SENAC Manacapuru.</p>
+          <div class="project-footer">
+            <div class="tech-list">
+              <span class="tech-item">HTML</span>
+              <span class="tech-item">CSS</span>
+              <span class="tech-item">JavaScript</span>
+            </div>
+            <a class="project-link" href="https://github.com/danielalvespinheiro/Lincker" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg> GitHub</a>
+          </div>
+        </div>
+
+        <!-- Gerador PDF -->
         <div class="project-card">
           <div class="project-header">
             <span class="project-name">Gerador de PDF com JS</span>
@@ -429,12 +622,11 @@
               <span class="tech-item">JavaScript</span>
               <span class="tech-item">jsPDF</span>
             </div>
-            <a class="project-link" href="https://github.com/danielalvespinheiro/gerador-de-PDF-com-javaScript" target="_blank">
-              ver no GitHub →
-            </a>
+            <a class="project-link" href="https://github.com/danielalvespinheiro/gerador-de-PDF-com-javaScript" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg> GitHub</a>
           </div>
         </div>
 
+        <!-- Estudos Java -->
         <div class="project-card">
           <div class="project-header">
             <span class="project-name">Estudos em Java</span>
@@ -445,12 +637,11 @@
             <div class="tech-list">
               <span class="tech-item">Java</span>
             </div>
-            <a class="project-link" href="https://github.com/danielalvespinheiro/CURSO-DE-JAVA" target="_blank">
-              ver no GitHub →
-            </a>
+            <a class="project-link" href="https://github.com/danielalvespinheiro/CURSO-DE-JAVA" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg> GitHub</a>
           </div>
         </div>
 
+        <!-- SQLite -->
         <div class="project-card">
           <div class="project-header">
             <span class="project-name">SQLite3 com HTML</span>
@@ -463,9 +654,7 @@
               <span class="tech-item">Express</span>
               <span class="tech-item">SQLite3</span>
             </div>
-            <a class="project-link" href="https://github.com/danielalvespinheiro/SQLITE3-atividade" target="_blank">
-              ver no GitHub →
-            </a>
+            <a class="project-link" href="https://github.com/danielalvespinheiro/SQLITE3-atividade" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg> GitHub</a>
           </div>
         </div>
 
@@ -478,29 +667,29 @@
       <div class="edu-list">
 
         <div class="edu-item">
-          <div class="edu-dot"></div>
+          <div class="edu-period">cursando</div>
           <div class="edu-content">
-            <div class="edu-title">Engenharia de Software — cursando</div>
+            <div class="edu-title">Engenharia de Software</div>
             <div class="edu-inst">Fametro · Manaus, AM</div>
-            <div class="edu-period">2º semestre · 3400h total</div>
+            <div class="edu-sub">2º semestre · 3400h total</div>
           </div>
         </div>
 
         <div class="edu-item">
-          <div class="edu-dot"></div>
+          <div class="edu-period">jul/2023 – nov/2024</div>
           <div class="edu-content">
             <div class="edu-title">Técnico em Desenvolvimento para Internet</div>
             <div class="edu-inst">SENAC · Manacapuru, AM</div>
-            <div class="edu-period">jul/2023 – nov/2024 · 1000h</div>
+            <div class="edu-sub">1000h</div>
           </div>
         </div>
 
         <div class="edu-item">
-          <div class="edu-dot" style="background: var(--muted);"></div>
+          <div class="edu-period">2025</div>
           <div class="edu-content">
             <div class="edu-title">Cursos complementares — IFAM</div>
             <div class="edu-inst">Ciência de Dados · Machine Learning · IoT · Metodologias Ágeis · Python</div>
-            <div class="edu-period">2025 · ~410h</div>
+            <div class="edu-sub">~410h</div>
           </div>
         </div>
 
@@ -508,7 +697,7 @@
     </section>
 
     <footer>
-      built by daniel alves · 2025
+      daniel alves pinheiro · 2025
     </footer>
 
   </div>
